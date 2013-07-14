@@ -20,16 +20,19 @@ app.get('/', function(req, res) {
 });
 
 io.sockets.on('connection', function(socket) {
+    var twStream = null;
     socket.on('start stream', function(opc) {
-        tw.stream('statuses/filter', {
-            track: "barcelona"
-            //locations: "2.051,41.283,2.26,41.468"
-        }, function(stream) {
+        tw.stream('statuses/filter', opc, function(stream) {
+            twStream = stream;
             stream.on('data', function(data) {
                 socket.emit('tweets', data);
             });
         });
-    })
+    });
+    socket.on('stop stream', function() {
+        if(twStream) twStream.destroy();
+        twStream = null;
+    });
 });
 
 exports = module.exports = server;

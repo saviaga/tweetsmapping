@@ -13,14 +13,22 @@
 <body>
 
 <header>
-    <div class="tweet">
-        This is where the tweet will appear
+    <div class="controls-placeholder wrap">
+        <a href="javascript:void(0)" class="playback" rel="playing"><img src="img/pause.png" alt=""/></a>
+    </div>
+    <div class="tweet-placeholder wrap">
+        <div class="avatar"></div>
+        <div class="tweet"><a class="screen_name" href="javascript:void(0)" target="_blank">@somebody</a>: <span class="text">This is where the tweet will appear</span></div>
     </div>
 </header>
+
 <section id="map"></section>
 
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 <script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/general.js"></script>
+<script type="text/javascript" src="js/lodash.min.js"></script>
+<script type="text/javascript" src="js/Twitter.js"></script>
+<script type="text/javascript" src="js/Map.js"></script>
+<script type="text/javascript" src="js/client.js"></script>
 </body>
 </html>
