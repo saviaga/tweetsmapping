@@ -1,0 +1,42 @@
+@color-xhigh: #5FC0CE;
+@color-high: #36BBCE;
+@color-base: #03899C;
+@color-low: #1F6B75;
+@color-xlow: #015965;
+
+@color-con-xhigh: #FFB673;
+@color-con-high: #FF9B40;
+@color-con-base: #FF7A00;
+@color-con-low: #BF7530;
+@color-con-xlow: #A65000;
+
+@color-text-white: #ddd;
+@color-text-black: #333;
+
+body {
+    margin: 0;
+    padding: 0;
+    color: @color-text-black;
+    font-family: verdana, arial, sans-serif;
+    font-size: 20px;
+}
+
+header {
+    .tweet {
+        padding: 20px;
+    }
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 130px;
+    color: @color-text-white;
+    background: @color-base;
+    z-index: 100;
+}
+#map {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
