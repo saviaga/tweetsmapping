@@ -35,6 +35,7 @@ var map = new (function() {
         });
         google.maps.event.addListener(marker, 'click', function() {
             _setTweet(tweet);
+            _centerMap(coord[0], coord[1]);
         });
         _setTweet(tweet);
     }
