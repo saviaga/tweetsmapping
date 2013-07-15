@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "description": "This will show the location of tweets in real time",
     "author": "Iker Garitaonandia - @ikertxu",
-    "main": "js/general.js",
+    "main": "js/socket.js",
     "dependencies": {
         "grunt": "~0.4.0",
         "grunt-contrib-watch": "~0.3.1",

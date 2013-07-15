@@ -13,7 +13,7 @@ var map = new (function() {
     function initGoogleMaps() {
         google.maps.event.addDomListener(window, 'load', function(){
             var mapOptions = {
-                zoom: 14,
+                zoom: 13,
                 center: new google.maps.LatLng(41.4, 2.17),
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
                 panControl: false,
@@ -26,16 +26,26 @@ var map = new (function() {
         });
     }
 
-    function setTweet(coord, tweet) {
-        _centerMap(coord[0], coord[1]);
+    function setTweet(tweet) {
+        var lat = 0, lon = 0;
+        if(tweet.geo) {
+            lat = tweet.geo.coordinates[0];
+            lon = tweet.geo.coordinates[1];
+        }
+        else if(tweet.coordinates) {
+            lat = tweet.coordinates.coordinates[1];
+            lon = tweet.coordinates.coordinates[0];
+        }
+        else return;
+        _centerMap(lat, lon);
         var marker = new google.maps.Marker({
-            position: _getPositionObj(coord[0], coord[1]),
+            position: _getPositionObj(lat, lon),
             map: _map,
             icon: "img/marker_twitter.png"
         });
         google.maps.event.addListener(marker, 'click', function() {
             _setTweet(tweet);
-            _centerMap(coord[0], coord[1]);
+            _centerMap(lat, lon);
         });
         _setTweet(tweet);
     }

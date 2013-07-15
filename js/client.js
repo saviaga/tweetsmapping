@@ -4,7 +4,7 @@
  * @timestamp 7/14/13 5:57 PM
  */
 
-var host = "192.168.1.62:8033";
+var host = "10.10.10.175:8033";
 
 console.info("Connecting to: " + host);
 
@@ -28,19 +28,14 @@ function initSocket() {
         var socket = io.connect(host);
         socket.on('tweets', function(tweet) {
             console.log(tweet);
-            if(tweet.geo) {
-                map.setTweet(tweet.geo.coordinates, tweet);
-            }
-            else {
-                console.warn(tweet);
-            }
+            map.setTweet(tweet);
         });
 
         map.initGoogleMaps();
-        var locations = {
-            locations: tw.locations.ccs
+        var streamParams = {
+            locations: tw.locations.bcn
         };
-        socket.emit('start stream', locations);
+        socket.emit('start stream', streamParams);
         $('.playback').on('click', function() {
             var state = $(this).attr('rel');
             switch (state) {
@@ -52,7 +47,7 @@ function initSocket() {
                 case "paused":
                     $(this).attr('rel', "playing");
                     $(this).find('img').attr('src', 'img/pause.png');
-                    socket.emit('start stream', locations);
+                    socket.emit('start stream', streamParams);
                     break;
             }
         })

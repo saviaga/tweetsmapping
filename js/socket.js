@@ -15,6 +15,8 @@ var app = require('express')(),
         access_token_secret: '<your access token secret>'
     });
 
+server.listen(8033);
+
 app.get('/', function(req, res) {
     res.sendFile(__dirname + '/index.html');
 });
