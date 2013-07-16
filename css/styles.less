@@ -12,18 +12,33 @@
 
 @color-text-white: #ddd;
 @color-text-black: #333;
+@padding: 20px;
+
+.radius(@radius) {
+	-webkit-border-radius: @radius;
+	-moz-border-radius: @radius;
+	-o-border-radius: @radius;
+	border-radius: @radius;
+}
 
 body {
     margin: 0;
     padding: 0;
-    color: @color-text-black;
+    color: @color-text-white;
     font-family: verdana, arial, sans-serif;
     font-size: 20px;
 }
 
+.wrap {
+	padding: 10px @padding;
+}
+
+a {
+	text-decoration: none;
+}
+
 header {
     @width: 960px;
-    @padding: 20px;
     .tweet-placeholder {
         @img-margin: 10px;
         @img-width: 48px;
@@ -42,25 +57,46 @@ header {
         }
         overflow: hidden;
     }
-    .wrap {
-        padding: 10px @padding;
-    }
     a {
         color: @color-high;
-        text-decoration: none;
     }
     a:hover {
         color: @color-xhigh;
     }
+	.radius(5px);
     position: relative;
     top: 0;
     width: @width;
     margin: 0 auto;
-    color: @color-text-white;
     background: @color-base;
     z-index: 100;
 }
-#map {
+section#login {
+	@width: 400px;
+	@height: 200px;
+	.radius(5px);
+	a {
+		.radius(30px);
+		display: inline-block;
+		padding: 20px 30px;
+		background: @color-high;
+		color: @color-xlow;
+	}
+	a:hover {
+		background: @color-xhigh;
+	}
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: @width;
+	height: @height;
+	margin-top: (-@height / 2);
+	margin-left: (-@width / 2);
+	z-index: 200;
+	background: @color-base;
+	text-align: center;
+}
+section#map {
     position: absolute;
     top: 0;
     width: 100%;

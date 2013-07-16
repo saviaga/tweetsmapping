@@ -12,9 +12,12 @@
 </head>
 <body>
 
-<header>
+<header style="display: none">
     <div class="controls-placeholder wrap">
-        <a href="javascript:void(0)" class="playback" rel="playing"><img src="img/pause.png" alt=""/></a>
+        <a href="javascript:void(0)" class="playback" rel="paused">
+			<img class="play" src="img/play.png" alt="Play"/>
+			<img class="pause" style="display: none" src="img/pause.png" alt="Pause"/>
+		</a>
     </div>
     <div class="tweet-placeholder wrap">
         <div class="avatar"></div>
@@ -22,13 +25,22 @@
     </div>
 </header>
 
+<section style="display: none" id="login">
+	<div class="wrap">
+		<p>For this experiment you need to sign in using your Twitter account</p>
+		<a id="twitterlogin" href="javascript:void(0)">Sign in with Twitter</a>
+	</div>
+</section>
+
 <section id="map"></section>
 
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 <script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/yui.min.js"></script>
 <script type="text/javascript" src="js/lodash.min.js"></script>
-<script type="text/javascript" src="js/Twitter.js"></script>
+<script type="text/javascript" src="js/Coordinates.js"></script>
 <script type="text/javascript" src="js/Map.js"></script>
 <script type="text/javascript" src="js/client.js"></script>
+<script type="text/javascript" src="js/twitterLogin.js"></script>
 </body>
 </html>

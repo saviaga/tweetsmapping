@@ -14,8 +14,8 @@ module.exports = function(grunt) {
             server: {
                 options: {
                     // For mobile testing. Change to your private IP.
-                    hostname: '10.10.10.175',
-                    port: 8080,
+                    hostname: '192.168.1.62',
+                    port: 35879,
                     base: '.'
                 }
             }
@@ -34,6 +34,7 @@ module.exports = function(grunt) {
         express: {
             server: {
                 options: {
+					debug: false,
                     server: path.resolve('js/socket')
                 }
             }

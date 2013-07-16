@@ -1,14 +1,72 @@
-/**
- * @author Iker Garitaonandia - @ikertxu
- * @web http://orloxx.github.io
- * @timestamp 7/14/13 10:33 PM
- */
-var tw = new (function() {
+YUI.add('Twitter', function (Y) {
+    "use strict";
 
-    this.locations = {
-        any: "-180,-90,180,90",
-        bcn: "2.036,41.276,2.293,41.473",
-        ccs: "-67.092,10.353,-66.647,10.634",
-        pzo: "-62.841,8.197,-62.592,8.397"
-    };
-});
+    Y.Twitter = function() {
+
+        var config = {
+			consumer_key: "YOUR_CONSUMER_KEY",
+			consumer_secret: "YOUR_CONSUMER_SECRET"
+		};
+
+        return {
+
+            config : function(params) {
+                for(var k in params) {
+                    config[k] = params[k];
+                }
+            },
+
+            call : function (request, callback, params, context) {
+
+                // Define some vars
+                var responseHandler = null,
+                    yql = null,
+                    adding = 'and oauth_consumer_key = "' +
+						config.consumer_key +
+						'" and oauth_consumer_secret = "' +
+						config.consumer_secret + '"';
+
+                // Set params to an object if it is falsy
+                params = params || {};
+
+                switch (request) {
+                    case "request_token":
+                        yql = 'select * ' +
+                            'from twitter.oauth.requesttoken ' +
+                            'where oauth_callback = "http://' +
+                            window.location.host +
+                            window.location.pathname + '" ' + adding + ';';
+                        responseHandler = this.requestTokenHandler;
+                        break;
+                    case "access_token":
+                        yql = 'select * from twitter.oauth.accesstoken where oauth_verifier="' + config.oauth_verifier + '" and #oauth# ' + adding + ';';
+                        responseHandler = this.requestTokenHandler;
+                        break;
+                }
+
+                if (yql) {
+                    yql = yql.replace("#oauth#", ' oauth_token = "' + config.oauth_token + '" AND oauth_token_secret = "' + config.oauth_token_secret + '"');
+
+                    new Y.YQL(yql, function (r) {
+                        responseHandler(r.query, callback, context);
+                    }, params, {proto: "https"});
+                }
+                else {
+                    throw new Error("No YQL defined");
+                }
+            },
+
+            requestTokenHandler : function (results, callback) {
+                var parts, response, tokens;
+                response = results.results.result;
+                parts = response.split("&");
+
+                tokens = {};
+                tokens.oauth_token = parts[0].split("=")[1];
+                tokens.oauth_token_secret = parts[1].split("=")[1];
+
+                callback(tokens);
+            }
+        };
+    }();
+}, '0.0.1', { requires: ['io-base', 'myYQL'] });
