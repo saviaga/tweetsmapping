@@ -15,20 +15,20 @@
 @padding: 20px;
 
 .radius(@radius) {
-	-webkit-border-radius: @radius;
-	-moz-border-radius: @radius;
-	-o-border-radius: @radius;
-	border-radius: @radius;
+    -webkit-border-radius: @radius;
+    -moz-border-radius: @radius;
+    -o-border-radius: @radius;
+    border-radius: @radius;
 }
 
 .popup(@width, @height) {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	width: @width;
-	height: @height;
-	margin-top: (-@height / 2);
-	margin-left: (-@width / 2);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: @width;
+    height: @height;
+    margin-top: (-@height / 2);
+    margin-left: (-@width / 2);
 }
 
 body {
@@ -40,11 +40,11 @@ body {
 }
 
 .wrap {
-	padding: 10px @padding;
+    padding: 10px @padding;
 }
 
 a {
-	text-decoration: none;
+    text-decoration: none;
 }
 
 header {
@@ -73,7 +73,7 @@ header {
     a:hover {
         color: @color-xhigh;
     }
-	.radius(5px);
+    .radius(5px);
     position: relative;
     top: 0;
     width: @width;
@@ -82,22 +82,22 @@ header {
     z-index: 100;
 }
 section#login {
-	.radius(5px);
-	a {
-		.radius(30px);
-		display: inline-block;
-		padding: 20px 30px;
-		background: @color-high;
-		color: @color-xlow;
-	}
-	a:hover {
-		background: @color-xhigh;
-	}
-	.popup(600px, 280px);
-	font-size: 32px;
-	z-index: 200;
-	background: @color-base;
-	text-align: center;
+    .radius(5px);
+    a {
+        .radius(30px);
+        display: inline-block;
+        padding: 20px 30px;
+        background: @color-high;
+        color: @color-xlow;
+    }
+    a:hover {
+        background: @color-xhigh;
+    }
+    .popup(600px, 280px);
+    font-size: 32px;
+    z-index: 200;
+    background: @color-base;
+    text-align: center;
 }
 section#map {
     position: absolute;
@@ -107,19 +107,19 @@ section#map {
     z-index: 50;
 }
 section#blooper {
-	.error {
-		p {
-			margin: 0;
-			padding: 20px;
-			font-size: 40px;
-		}
-		.popup(600px, 250px);
-		text-align: center;
-	}
-	position: absolute;
-	top: 0;
-	width: 100%;
-	height: 100%;
-	z-index: 0;
-	background: @color-con-low;
+    .error {
+        p {
+            margin: 0;
+            padding: 20px;
+            font-size: 40px;
+        }
+        .popup(600px, 250px);
+        text-align: center;
+    }
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    background: @color-con-low;
 }

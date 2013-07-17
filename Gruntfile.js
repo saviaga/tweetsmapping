@@ -34,7 +34,7 @@ module.exports = function(grunt) {
         express: {
             server: {
                 options: {
-					debug: false,
+                    debug: false,
                     server: path.resolve('js/socket')
                 }
             }

@@ -4,9 +4,9 @@ YUI.add('Twitter', function (Y) {
     Y.Twitter = function() {
 
         var config = {
-			consumer_key: "YOUR_CONSUMER_KEY",
-			consumer_secret: "YOUR_CONSUMER_SECRET"
-		};
+            consumer_key: "YOUR_CONSUMER_KEY",
+            consumer_secret: "YOUR_CONSUMER_SECRET"
+        };
 
         return {
 
@@ -22,9 +22,9 @@ YUI.add('Twitter', function (Y) {
                 var responseHandler = null,
                     yql = null,
                     adding = 'and oauth_consumer_key = "' +
-						config.consumer_key +
-						'" and oauth_consumer_secret = "' +
-						config.consumer_secret + '"';
+                        config.consumer_key +
+                        '" and oauth_consumer_secret = "' +
+                        config.consumer_secret + '"';
 
                 // Set params to an object if it is falsy
                 params = params || {};

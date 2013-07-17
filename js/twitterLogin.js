@@ -4,7 +4,7 @@ YUI({
     debug: false,
     modules: {
         'Twitter': {
-            fullpath: 'js/twitter.js'
+            fullpath: 'js/Twitter.js'
         },
         'myYQL': {
             fullpath: 'js/yql.js',
@@ -45,11 +45,11 @@ YUI({
                 access_token: getQueryStr('access_token'),
                 access_secret: getQueryStr('access_secret')
             };
-			client.userLogged(tokens);
+            client.userLogged(tokens);
         }
-		else {
-			client.userNotLogged();
-		}
+        else {
+            client.userNotLogged();
+        }
     }
 );
 
