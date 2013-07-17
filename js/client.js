@@ -29,6 +29,9 @@ var client = new (function() {
 			});
 
 			map.initGoogleMaps();
+			setTimeout(function() {
+				$('#blooper').find('.error').fadeIn('slow');
+			}, 2000);
 		}
 	}
 

@@ -21,6 +21,16 @@
 	border-radius: @radius;
 }
 
+.popup(@width, @height) {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: @width;
+	height: @height;
+	margin-top: (-@height / 2);
+	margin-left: (-@width / 2);
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -72,8 +82,6 @@ header {
     z-index: 100;
 }
 section#login {
-	@width: 400px;
-	@height: 200px;
 	.radius(5px);
 	a {
 		.radius(30px);
@@ -85,13 +93,8 @@ section#login {
 	a:hover {
 		background: @color-xhigh;
 	}
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	width: @width;
-	height: @height;
-	margin-top: (-@height / 2);
-	margin-left: (-@width / 2);
+	.popup(600px, 280px);
+	font-size: 32px;
 	z-index: 200;
 	background: @color-base;
 	text-align: center;
@@ -101,5 +104,22 @@ section#map {
     top: 0;
     width: 100%;
     height: 100%;
-    z-index: 0;
+    z-index: 50;
+}
+section#blooper {
+	.error {
+		p {
+			margin: 0;
+			padding: 20px;
+			font-size: 40px;
+		}
+		.popup(600px, 250px);
+		text-align: center;
+	}
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 0;
+	background: @color-con-low;
 }
