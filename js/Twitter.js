@@ -9,7 +9,6 @@ YUI.add('Twitter', function (Y) {
         };
 
         return {
-
             config : function(params) {
                 for(var k in params) {
                     config[k] = params[k];
