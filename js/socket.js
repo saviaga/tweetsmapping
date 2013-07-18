@@ -7,7 +7,7 @@
 var app = require('express')(),
     server = require('http').createServer(app),
     io = require('socket.io').listen(server),
-    twitter = require('ntwitter')
+    twitter = require('ntwitter');
 
 server.listen(8033);
 

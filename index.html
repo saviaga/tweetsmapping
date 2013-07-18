@@ -14,13 +14,22 @@
 
 <header style="display: none">
     <div class="controls-placeholder wrap">
-        <a href="javascript:void(0)" class="playback" rel="paused">
-            <img class="play" src="img/play.png" alt="Play"/>
-            <img class="pause" style="display: none" src="img/pause.png" alt="Pause"/>
-        </a>
+        <div>
+            <a href="javascript:void(0)" class="playback" rel="paused">
+                <img class="play" src="img/play.png" alt="Play"/>
+                <img class="pause" style="display: none" src="img/pause.png" alt="Pause"/>
+            </a>
+        </div>
+        <div class="zone-placeholder">
+            <select name="zone" id="zone"></select>
+        </div>
+        <div class="track-placeholder">
+            <input type="text" id="track" name="track" value="Write words here" title="Write words here" />
+        </div>
     </div>
     <div class="tweet-placeholder wrap">
-        <div class="avatar"></div>
+        <div class="avatar"><img
+            src="https://si0.twimg.com/profile_images/3079534762/9eb73407188c9bc2ef346221cbaa8cd4_bigger.jpeg" alt="Ikertxu"/></div>
         <div class="tweet"><a class="screen_name" href="http://twitter.com/ikertxu" target="_blank">@ikertxu</a>: <span class="text">Hi. Click on play and here will appear tweets as they are posted in real time.</span></div>
     </div>
 </header>
@@ -35,7 +44,7 @@
 <section id="map"></section>
 <section id="blooper">
     <div style="display: none" class="error">
-        <p>Google Maps API is not working right now. You can wait some time and refresh the page</p>
+        <p>Google Maps API is not responding right now. You can wait some time or refresh the page</p>
     </div>
 </section>
 
@@ -43,7 +52,7 @@
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/yui.min.js"></script>
 <script type="text/javascript" src="js/lodash.min.js"></script>
-<script type="text/javascript" src="js/Coordinates.js"></script>
+<script type="text/javascript" src="js/City.js"></script>
 <script type="text/javascript" src="js/Map.js"></script>
 <script type="text/javascript" src="js/client.js"></script>
 <script type="text/javascript" src="js/twitterLogin.js"></script>

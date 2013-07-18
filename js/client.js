@@ -8,30 +8,75 @@ var client = new (function() {
     this.userNotLogged = userNotLogged;
     this.userLogged = userLogged;
 
-    var _host = "192.168.1.62:8033",
+    var _host = window.location.host.split(":")[0] + ":8033",
         _socket = null;
 
     loadScript(document, "//" + _host + "/socket.io/socket.io.js",
         'socket-definition', initSocket);
 
+    var DEFAULT_LOCATION = city.locations.any;
+
     var _userObj = {
         params: {
-            locations: coord.locations.ccs
+            locations: DEFAULT_LOCATION.geo
         }
     };
+
+    $(initDOM);
+
+    function initDOM() {
+        var i = 0,
+            zone = $('#zone');
+        _.each(city.locations, function(loc, key) {
+            _userObj.params.locations = i === 0 ?
+                city.locations[key].geo :
+                DEFAULT_LOCATION.geo;
+            zone.append('<option value="' + key + '">' + loc.name + '</option>');
+            i++;
+        });
+
+        zone.on('change', function(e) {
+            var val = $(this).val();
+            _userObj.params.locations = city.locations[val].geo;
+            startStream($('.playback'));
+        });
+
+        var track = $('#track');
+        track.on('focus', function() {
+            if($(this).val() === $(this).attr('title')) {
+                $(this).val("");
+            }
+            $(this).addClass("active");
+        });
+        track.on('blur', function() {
+            if($.trim($(this).val()) === "") {
+                $(this).val($(this).attr('title'));
+            }
+            $(this).removeClass("active");
+        });
+    }
 
     function initSocket() {
         if(io !== undefined) {
             _socket = io.connect(_host);
             _socket.on('tweets', function(tweet) {
-                console.log(tweet);
-                map.setTweet(tweet);
+                newTweet(tweet);
             });
 
             map.initGoogleMaps();
             setTimeout(function() {
                 $('#blooper').find('.error').fadeIn('slow');
             }, 2000);
+        }
+    }
+
+    function newTweet(tweet) {
+        var track = $('#track');
+        if(track.val() == "" ||
+            track.val() == track.attr('title') ||
+            tweet.text.toLowerCase().indexOf(track.val().toLowerCase()) != -1)
+        {
+            map.setTweet(tweet);
         }
     }
 
@@ -50,24 +95,28 @@ var client = new (function() {
         $(function() {
             $('#login').hide();
             $('header').show();
-            $('.playback').on('click', function() {
-                var state = $(this).attr('rel');
-                switch (state) {
-                    case "playing":
-                        $(this).attr('rel', "paused");
-                        $(this).find('img.play').show();
-                        $(this).find('img.pause').hide();
-                        _socket.emit('stop stream', _userObj);
-                        break;
-                    case "paused":
-                        $(this).attr('rel', "playing");
-                        $(this).find('img.play').hide();
-                        $(this).find('img.pause').show();
-                        _socket.emit('start stream', _userObj);
-                        break;
-                }
-            });
+            $('.play').on('click', startStream);
+            $('.pause').on('click', stopStream);
         })
+    }
+
+    function startStream(ele) {
+        ele = ele.currentTarget ? $(this).parent() : ele;
+        if(ele) {
+            ele.attr('rel', "paused");
+            ele.find('.play').hide();
+            ele.find('.pause').show();
+        }
+        _socket.emit('start stream', _userObj);
+    }
+    function stopStream(ele) {
+        ele = ele.currentTarget ? $(this).parent() : ele;
+        if(ele) {
+            ele.attr('rel', "playing");
+            ele.find('.play').show();
+            ele.find('.pause').hide();
+        }
+        _socket.emit('stop stream', _userObj);
     }
 
     function loadScript(d, src, id, callback){

@@ -1,3 +1,4 @@
+@color-bright: #daeff9;
 @color-xhigh: #5FC0CE;
 @color-high: #36BBCE;
 @color-base: #03899C;
@@ -11,7 +12,9 @@
 @color-con-xlow: #A65000;
 
 @color-text-white: #ddd;
-@color-text-black: #333;
+@color-text-black: #303033;
+@color-text-enabled: #64737f;
+@color-text-disabled: #a2bfc2;
 @padding: 20px;
 
 .radius(@radius) {
@@ -57,6 +60,10 @@ header {
             height: @img-width;
             background: url("http://placehold.it/48x48") no-repeat;
             margin: 0 @img-margin @img-margin 0;
+            img {
+                width: 48px;
+                height: 48px;
+            }
         }
         .tweet {
             width: (@width - (@padding * 2) - @img-width - @img-margin);
@@ -67,18 +74,45 @@ header {
         }
         overflow: hidden;
     }
+    .controls-placeholder {
+        div {
+            float: left;
+            padding-right: 20px;
+        }
+        select {
+            font-size: 20px;
+        }
+        .track-placeholder {
+            float: right;
+        }
+        #track {
+            margin: 0;
+            padding: 10px;
+            border: none;
+            font-size: 20px;
+            width: 400px;
+            .radius(10px);
+            background: @color-bright;
+            color: @color-text-disabled;
+            text-align: center;
+        }
+        #track.active {
+            color: @color-text-enabled;
+        }
+        overflow: hidden;
+    }
     a {
-        color: @color-high;
+        color: @color-bright;
     }
     a:hover {
-        color: @color-xhigh;
+        color: @color-text-black;
     }
     .radius(5px);
     position: relative;
     top: 0;
     width: @width;
     margin: 0 auto;
-    background: @color-base;
+    background: @color-high;
     z-index: 100;
 }
 section#login {
