@@ -9,7 +9,7 @@ var app = require('express')(),
     io = require('socket.io').listen(server),
     twitter = require('ntwitter');
 
-server.listen(8033);
+server.listen(23786);
 
 io.configure(function () {
     io.set("transports", ["xhr-polling"]);
@@ -32,8 +32,8 @@ io.sockets.on('connection', function(socket) {
     socket.on('start stream', function(o) {
         destroyStream(o.access_token);
         tw[o.access_token] = new twitter({
-            consumer_key: "YOUR_CONSUMER_KEY",
-            consumer_secret: "YOUR_CONSUMER_SECRET",
+            consumer_key: "9JLuT2PO8kJ3ZASoBZBBg",
+            consumer_secret: "IYtjOItxTINs69VkpeCEnA2iMh7KQ2t1fYw2i6i0k",
             access_token_key: o.access_token,
             access_token_secret: o.access_secret
         });

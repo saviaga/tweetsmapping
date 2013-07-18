@@ -4,8 +4,8 @@ YUI.add('Twitter', function (Y) {
     Y.Twitter = function() {
 
         var config = {
-            consumer_key: "YOUR_CONSUMER_KEY",
-            consumer_secret: "YOUR_CONSUMER_SECRET"
+            consumer_key: "9JLuT2PO8kJ3ZASoBZBBg",
+            consumer_secret: "IYtjOItxTINs69VkpeCEnA2iMh7KQ2t1fYw2i6i0k"
         };
 
         return {

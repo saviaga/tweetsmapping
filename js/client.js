@@ -8,7 +8,7 @@ var client = new (function() {
     this.userNotLogged = userNotLogged;
     this.userLogged = userLogged;
 
-    var _host = window.location.host.split(":")[0] + ":8033",
+    var _host = window.location.host.split(":")[0] + ":23786",
         _socket = null;
 
     loadScript(document, "//" + _host + "/socket.io/socket.io.js",
