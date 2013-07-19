@@ -32,8 +32,8 @@ io.sockets.on('connection', function(socket) {
     socket.on('start stream', function(o) {
         destroyStream(o.access_token);
         tw[o.access_token] = new twitter({
-            consumer_key: "9JLuT2PO8kJ3ZASoBZBBg",
-            consumer_secret: "IYtjOItxTINs69VkpeCEnA2iMh7KQ2t1fYw2i6i0k",
+            consumer_key: "YOUR_CONSUMER_KEY",
+            consumer_secret: "YOUR_CONSUMER_SECRET",
             access_token_key: o.access_token,
             access_token_secret: o.access_secret
         });
